@@ -58,7 +58,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         )
         
     }
-    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification) async
+      -> UNNotificationPresentationOptions {
+      let userInfo = notification.request.content.userInfo
+
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+      // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+      // ...
+
+      // Print full message.
+      print(userInfo)
+
+      // Change this to your preferred presentation option
+      return [[.alert, .sound]]
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse) async {
+      let userInfo = response.notification.request.content.userInfo
+
+      // ...
+
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+      // Messaging.messaging().appDidReceiveMessage(userInfo)
+
+      // Print full message.
+      print(userInfo)
+    }
     
     
 
