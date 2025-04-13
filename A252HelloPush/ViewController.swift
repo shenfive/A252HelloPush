@@ -14,6 +14,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func goGoogleMap(_ sender: Any) {
+        let taipeiStationURL = "comgooglemaps://?daddr=Taipei+Main+Station&directionsmode=driving"
+        if let url = URL(string: taipeiStationURL) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            print("Google Maps app is not installed.")
+        }
 
+        
+    }
+    
 }
 

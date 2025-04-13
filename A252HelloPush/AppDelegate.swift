@@ -89,6 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+          guard url.scheme == "myApp" else { return false }  // 確認 URL 的 Scheme 是否符合
+        let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems    // 解析 URL 的參數
+        queryItems?.forEach { item in
+            print("Key: \(item.name), Value: \(item.value ?? "")")
+        }
+        return true
+    }
 
 
 
